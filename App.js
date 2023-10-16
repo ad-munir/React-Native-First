@@ -1,11 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
-import { Alert, BackHandler, Button, DrawerLayoutAndroid, PermissionsAndroid, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { Alert, BackHandler, Button, DrawerLayoutAndroid, PermissionsAndroid, PixelRatio, StyleSheet, Text, ToastAndroid, View } from 'react-native';
 import { CameraPermession } from './CameraPermession';
 import { Components } from './Components';
 import { Animation } from './Animation';
+import Dimensions from './Dimensions';
+import Links from './Links';
+import ModalRN from './ModalRN';
+import StatusBarRN from './StatusBarRN';
 
 export default function App() {
+
+  console.log(PixelRatio.get())
+  console.log(PixelRatio.getPixelSizeForLayoutSize(100))
+  console.log(PixelRatio.getFontScale())
+
 
   const [drawerPosition, setDrawerPosition] = useState("left");
   const drawerRef = useRef(null);
@@ -54,7 +63,7 @@ export default function App() {
         drawerWidth={350}
         drawerBackgroundColor={"#eee"}
       >
-        <View style={{ flex: .5, paddingHorizontal: 70, justifyContent: "center", gap: 10 }}>
+        <View style={{ flex: 1, paddingHorizontal: 70, justifyContent: "center", gap: 10 }}>
           <Button
             title="Change position"
             onPress={() => {
@@ -70,11 +79,15 @@ export default function App() {
           
           <Button title='open Toast' onPress={() => ToastAndroid.show('you clicked me!', ToastAndroid.SHORT)} />
           
-          <Components/>
-          <Animation />
+          {/* <Components/> */}
+          {/* <Animation /> */}
+          <Links />
+          <ModalRN />
+          <StatusBarRN />
 
         </View>
       </DrawerLayoutAndroid>
+      {/* <Dimensions/> */}
     </>
 
   );
